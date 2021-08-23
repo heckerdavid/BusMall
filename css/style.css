@@ -1,12 +1,10 @@
 body {
   width: 900px;
-  display: flex;
+  background-color: rgba(146, 142, 142, 0.849);
 }
 
 body section {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
   flex-direction: row;
   margin: 10px;
 }
@@ -21,6 +19,15 @@ img {
 }
 
 section:nth-child(2) {
-  position: sticky;
-  bottom: 50px;
+  border-radius: 300px;
+  color: rgb(75, 29, 105);
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+li {
+  margin: 10px;
+  font-size: large;
+  font-family: 'Courier New', Courier, monospace;
 }
