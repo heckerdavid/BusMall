@@ -1,0 +1,21 @@
+body {
+  width: 900px;
+  display: flex;
+}
+
+body section {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  margin: 10px;
+}
+div {
+  margin: 20px;
+  padding: 10px;
+  border: solid black;
+}
+img {
+  height: 300px;
+  border: solid black;
+}
