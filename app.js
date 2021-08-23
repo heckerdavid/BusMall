@@ -1,26 +1,8 @@
 'use strict';
 
 
-// As a user, I would like to display three unique products by chance so that the viewers can pick a favorite.
-
-// Create a constructor function that creates an object associated with each product, and has the following properties:
-// Name of the product
-// File path of image
-// Times the image has been shown
-// Create an algorithm that will randomly generate three unique product images from the images directory and display them side-by-side-by-side in the browser window.
-
-// For each of the three images, increment its property of times it has been shown by one.
-
-// Attach an event listener to the section of the HTML page where the images are going to be displayed.
-
-// Once the users ‘clicks’ a product, generate three new products for the user to pick from.
-
-
 
 // ____________________________ to do _________________________________//
-// random return from array of items
-// keep count of displayed and clicked
-// display function
 
 
 // ______________________________ global variables _________________________________//
@@ -37,7 +19,7 @@ let leftItem = null;
 let middleItem = null;
 let rightItem = null;
 
-let flag = 10;
+let flag = 25;
 
 
 
@@ -140,7 +122,7 @@ new StoreItem("pen", "./img/assets/pen.jpg");
 new StoreItem("pet-sweep", "./img/assets/pet-sweep.jpg");
 new StoreItem("scissors", "./img/assets/scissors.jpg");
 new StoreItem("shark", "./img/assets/shark.jpg");
-new StoreItem("sweep", "./img/assets/sweep.jpg");
+new StoreItem("sweep", "./img/assets/sweep.png");
 new StoreItem("tauntaun", "./img/assets/tauntaun.jpg");
 new StoreItem("unicorn", "./img/assets/unicorn.jpg");
 new StoreItem("water can", "./img/assets/water-can.jpg");
