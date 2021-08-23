@@ -19,7 +19,6 @@
 
 // ____________________________ to do _________________________________//
 // random return from array of items
-// event listener 
 // keep count of displayed and clicked
 // display function
 
@@ -30,7 +29,7 @@ const itemsSectionElem = document.getElementById('all_items');
 const leftImgElem = document.getElementById('left_item_img');
 const middleImgElem = document.getElementById('middle_item_img');
 const rightImgElem = document.getElementById('right_item_img');
-const leftTextElem = document.getElementById("left_item_p");
+const leftTextElem = document.getElementById('left_item_p');
 const middleTextElem = document.getElementById('middle_item_p');
 const rightTextElem = document.getElementById('right_item_p');
 
@@ -62,6 +61,28 @@ StoreItem.prototype.renderSingleItem = function(name, img) {
 
 function handleClick() {
   console.log(event.target)
+  randomizeItems();
+}
+
+function displayThreeItems(item1, item2, item3) {
+  item1.renderSingleItem(leftTextElem, leftImgElem)
+  item2.renderSingleItem(middleTextElem, middleImgElem)
+  item3.renderSingleItem(rightTextElem, rightImgElem)
+}
+
+function randomizeItems() {
+  let leftItem = StoreItem.allItems[Math.floor(Math.random() * StoreItem.allItems.length)];
+  let middleItem = StoreItem.allItems[Math.floor(Math.random() * StoreItem.allItems.length)];
+  let rightItem = StoreItem.allItems[Math.floor(Math.random() * StoreItem.allItems.length)];
+  
+  while (leftItem === middleItem || leftItem === rightItem) {
+    leftItem = StoreItem.allItems[Math.floor(Math.random() * StoreItem.allItems.length)];
+  }
+  while (rightItem === middleItem || rightItem === leftItem) {
+    rightItem = StoreItem.allItems[Math.floor(Math.random() * StoreItem.allItems.length)];
+  }
+  displayThreeItems(leftItem, middleItem, rightItem)
+  console.log(leftItem, middleItem, rightItem);
 }
 
 // ______________________________________ event listener _____________________________________//
@@ -69,5 +90,14 @@ function handleClick() {
 itemsSectionElem.addEventListener('click', handleClick)
 
 // ______________________________________ calls _____________________________________//
+new StoreItem('bag', './img/assets/bag.jpg')
+new StoreItem("banana", "./img/assets/banana.jpg");
+new StoreItem("bathroom", "./img/assets/bathroom.jpg");
+new StoreItem("boots", "./img/assets/boots.jpg");
+new StoreItem("breakfast", "./img/assets/breakfast.jpg");
+new StoreItem("bubble gum", "./img/assets/bubblegum.jpg");
+new StoreItem("chair", "./img/assets/chair.jpg");
+new StoreItem("cthulhu", "./img/assets/cthulhu.jpg");
+new StoreItem("dog duck", "./img/assets/dog-duck.jpg");
 
-new StoreItem('R2', './img/assets/bag.jpg')
+randomizeItems();
