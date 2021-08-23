@@ -19,3 +19,8 @@ img {
   height: 300px;
   border: solid black;
 }
+
+section:nth-child(2) {
+  position: sticky;
+  bottom: 50px;
+}

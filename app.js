@@ -61,6 +61,7 @@ StoreItem.allItems = [];
 StoreItem.prototype.renderSingleItem = function(name, img) {
   name.textContent = this.name;
   img.src = this.img;
+  this.displayed++;
 }
 
 // ______________________________ functions _________________________________//
@@ -77,7 +78,8 @@ function handleClick() {
       middleItem.clicked++;
     }
     if (!flag) {
-      itemsSectionElem.removeEventListener('click', handleClick)
+      itemsSectionElem.removeEventListener('click', handleClick);
+      renderResults();
     }
 
   }
@@ -107,6 +109,16 @@ function randomizeItems() {
   rightItem = StoreItem.allItems[rightIndex];
   displayThreeItems(leftItem, middleItem, rightItem);
   console.log("Index numbers are : ", leftIndex, middleIndex, rightIndex);
+}
+
+function renderResults() {
+  let ulElem = document.getElementById('click_tracker')
+  ulElem.innerHTML = ''
+  for (let item of StoreItem.allItems) {
+    const liElem = document.createElement('li')
+    liElem.textContent = `${item.name}: ${item.clicked} clicks. ${(item.clicked/item.displayed) * 100}%`
+    ulElem.appendChild(liElem)
+  }
 }
 
 // ______________________________________ event listener _____________________________________//
