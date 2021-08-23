@@ -33,6 +33,12 @@ const leftTextElem = document.getElementById('left_item_p');
 const middleTextElem = document.getElementById('middle_item_p');
 const rightTextElem = document.getElementById('right_item_p');
 
+let leftItem = null;
+let middleItem = null;
+let rightItem = null;
+
+let flag = 10;
+
 
 
 // ______________________________ constructor funcs _________________________________//
@@ -61,6 +67,21 @@ StoreItem.prototype.renderSingleItem = function(name, img) {
 
 function handleClick() {
   console.log(event.target)
+  if (event.target === leftImgElem || event.target === rightImgElem || event.target === middleImgElem) {
+    flag--;
+    if (event.target === leftImgElem) {
+      leftItem.clicked++;
+    } else if (event.target === rightImgElem) {
+      rightItem.clicked++;
+    } else {
+      middleItem.clicked++;
+    }
+    if (!flag) {
+      itemsSectionElem.removeEventListener('click', handleClick)
+    }
+
+  }
+
   randomizeItems();
 }
 
@@ -71,18 +92,21 @@ function displayThreeItems(item1, item2, item3) {
 }
 
 function randomizeItems() {
-  let leftItem = StoreItem.allItems[Math.floor(Math.random() * StoreItem.allItems.length)];
-  let middleItem = StoreItem.allItems[Math.floor(Math.random() * StoreItem.allItems.length)];
-  let rightItem = StoreItem.allItems[Math.floor(Math.random() * StoreItem.allItems.length)];
+  let leftIndex = Math.floor(Math.random() * StoreItem.allItems.length);
+  let middleIndex = Math.floor(Math.random() * StoreItem.allItems.length);
+  let rightIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   
-  while (leftItem === middleItem || leftItem === rightItem) {
-    leftItem = StoreItem.allItems[Math.floor(Math.random() * StoreItem.allItems.length)];
+  while ( leftIndex === middleIndex ||  leftIndex === rightIndex) {
+     leftIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   }
-  while (rightItem === middleItem || rightItem === leftItem) {
-    rightItem = StoreItem.allItems[Math.floor(Math.random() * StoreItem.allItems.length)];
+  while (rightIndex === middleIndex || rightIndex ===  leftIndex) {
+    rightIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   }
-  displayThreeItems(leftItem, middleItem, rightItem)
-  console.log(leftItem, middleItem, rightItem);
+  leftItem = StoreItem.allItems[leftIndex];
+  middleItem = StoreItem.allItems[middleIndex];
+  rightItem = StoreItem.allItems[rightIndex];
+  displayThreeItems(leftItem, middleItem, rightItem);
+  console.log("Index numbers are : ", leftIndex, middleIndex, rightIndex);
 }
 
 // ______________________________________ event listener _____________________________________//
