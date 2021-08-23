@@ -1,0 +1,45 @@
+body {
+  width: 900px;
+  background-color: rgba(146, 142, 142, 0.849);
+}
+
+body section {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+div {
+  margin: 20px;
+  padding: 10px;
+  border: solid black;
+}
+img {
+  height: 300px;
+  border: solid black;
+}
+
+section:nth-child(2) {
+  border-radius: 300px;
+  color: rgb(75, 29, 105);
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+li {
+  margin: 10px;
+  font-size: large;
+  margin-left: 50px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+button { 
+  background-color: hsla(293, 97%, 30%, 0.719);
+  border-style: none;
+  height: 40px;
+  width: 150px;
+  padding: 10px;
+  margin: 30px;
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+}
