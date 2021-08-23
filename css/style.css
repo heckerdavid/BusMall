@@ -29,5 +29,17 @@ section:nth-child(2) {
 li {
   margin: 10px;
   font-size: large;
+  margin-left: 50px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+button { 
+  background-color: hsla(293, 97%, 30%, 0.719);
+  border-style: none;
+  height: 40px;
+  width: 150px;
+  padding: 10px;
+  margin: 30px;
+  font-size: 16px;
   font-family: 'Courier New', Courier, monospace;
 }

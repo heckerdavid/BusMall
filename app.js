@@ -135,5 +135,15 @@ new StoreItem("bubble gum", "./img/assets/bubblegum.jpg");
 new StoreItem("chair", "./img/assets/chair.jpg");
 new StoreItem("cthulhu", "./img/assets/cthulhu.jpg");
 new StoreItem("dog duck", "./img/assets/dog-duck.jpg");
+new StoreItem("dragon", "./img/assets/dragon.jpg");
+new StoreItem("pen", "./img/assets/pen.jpg");
+new StoreItem("pet-sweep", "./img/assets/pet-sweep.jpg");
+new StoreItem("scissors", "./img/assets/scissors.jpg");
+new StoreItem("shark", "./img/assets/shark.jpg");
+new StoreItem("sweep", "./img/assets/sweep.jpg");
+new StoreItem("tauntaun", "./img/assets/tauntaun.jpg");
+new StoreItem("unicorn", "./img/assets/unicorn.jpg");
+new StoreItem("water can", "./img/assets/water-can.jpg");
+new StoreItem("wine glass", "./img/assets/wine-glass.jpg");
 
 randomizeItems();
