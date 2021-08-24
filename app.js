@@ -14,12 +14,13 @@ const rightImgElem = document.getElementById('right_item_img');
 const leftTextElem = document.getElementById('left_item_p');
 const middleTextElem = document.getElementById('middle_item_p');
 const rightTextElem = document.getElementById('right_item_p');
+const buttonElem = document.getElementById('view')
 
 let leftItem = null;
 let middleItem = null;
 let rightItem = null;
 
-let flag = 5;
+let flag = 25;
 
 
 var ctx = document.getElementById("chart").getContext("2d");
@@ -69,6 +70,11 @@ function handleClick() {
   randomizeItems();
 }
 
+function viewResults() {
+  renderResults();
+  renderChartData();
+}
+
 function displayThreeItems(item1, item2, item3) {
   item1.renderSingleItem(leftTextElem, leftImgElem)
   item2.renderSingleItem(middleTextElem, middleImgElem)
@@ -113,8 +119,8 @@ function randomizeItems() {
 }
 
 function renderResults() {
-  let ulElem = document.getElementById('click_tracker')
-  ulElem.innerHTML = ''
+  let ulElem = document.getElementById('click_tracker');
+  ulElem.innerHTML = '';
   for (let item of StoreItem.allItems) {
     const liElem = document.createElement('li')
     liElem.textContent = `${item.name}: ${item.clicked} click(s). ${(item.clicked/item.displayed) * 100}% clicked when displayed.`
@@ -123,6 +129,12 @@ function renderResults() {
 }
 
 function renderChartData() {
+  // let chartDivElem = document.getElementById('canvas');
+  // chartDivElem.innerHTML = '';
+  // let canvasElem = document.createElement('canvas')
+  // canvasElem.id = 'chart';
+  // chartDivElem.appendChild(canvasElem);
+
   let numberLabels = [];
   let itemLabels = [];
   for (let chart of StoreItem.allItems) {
@@ -170,6 +182,7 @@ function renderChartData() {
 // ______________________________________ event listener _____________________________________//
 
 itemsSectionElem.addEventListener('click', handleClick)
+buttonElem.addEventListener('click', viewResults)
 
 
 // ______________________________________ calls _____________________________________//
