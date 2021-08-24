@@ -76,16 +76,36 @@ function displayThreeItems(item1, item2, item3) {
 }
 
 function randomizeItems() {
+  let prevItems = [leftItem, middleItem, rightItem]
   let leftIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   let middleIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   let rightIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   
-  while ( leftIndex === middleIndex ||  leftIndex === rightIndex) {
+  while ( 
+    leftIndex === middleIndex ||
+    leftIndex === rightIndex ||
+    prevItems.includes(StoreItem.allItems[leftIndex]
+    )) {
+
     leftIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   }
-  while (rightIndex === middleIndex || rightIndex ===  leftIndex) {
+  prevItems.push(StoreItem.allItems[leftIndex])
+
+  while (
+    rightIndex === middleIndex ||
+    rightIndex === leftIndex ||
+    prevItems.includes(StoreItem.allItems[rightIndex]
+    )) {
+
     rightIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   }
+  prevItems.push(StoreItem.allItems[rightIndex]);
+
+  while ( prevItems.includes(StoreItem.allItems[middleIndex])) {
+    middleIndex = Math.floor(Math.random() * StoreItem.allItems.length);
+  }
+  
+
   leftItem = StoreItem.allItems[leftIndex];
   middleItem = StoreItem.allItems[middleIndex];
   rightItem = StoreItem.allItems[rightIndex];
@@ -118,7 +138,13 @@ function renderChartData() {
         {
           label: "MallonaBus",
           data: numberLabels,
-          backgroundColor: ["yellow", "purple"],
+          backgroundColor: ["yellow", "purple",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",],
           borderColor: [
             "rgba(255, 99, 132, 1)",
             "rgba(54, 162, 235, 1)",
