@@ -98,7 +98,7 @@ function renderResults() {
   ulElem.innerHTML = ''
   for (let item of StoreItem.allItems) {
     const liElem = document.createElement('li')
-    liElem.textContent = `${item.name}: ${item.clicked} click(s). clicked ${(item.clicked/item.displayed) * 100}% of the time when displayed.`
+    liElem.textContent = `${item.name}: ${item.clicked} click(s). ${(item.clicked/item.displayed) * 100}% clicked when displayed.`
     ulElem.appendChild(liElem)
   }
 }
