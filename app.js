@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 // ____________________________ to do _________________________________//
 
 
@@ -14,14 +12,13 @@ const rightImgElem = document.getElementById('right_item_img');
 const leftTextElem = document.getElementById('left_item_p');
 const middleTextElem = document.getElementById('middle_item_p');
 const rightTextElem = document.getElementById('right_item_p');
-const buttonElem = document.getElementById('view')
+const buttonElem = document.getElementById('view');
 
 let leftItem = null;
 let middleItem = null;
 let rightItem = null;
 
 let flag = 25;
-
 
 var ctx = document.getElementById("chart").getContext("2d");
 
@@ -61,12 +58,12 @@ function handleClick() {
     }
     if (!flag) {
       itemsSectionElem.removeEventListener('click', handleClick);
-      renderResults();
-      renderChartData();
+      // renderResults();
+      // renderChartData();
+      addToLocalStorage();
+      renderViewButton();
     }
-    
   }
-  
   randomizeItems();
 }
 
@@ -87,27 +84,19 @@ function randomizeItems() {
   let middleIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   let rightIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   
-  while ( 
-    leftIndex === middleIndex ||
-    leftIndex === rightIndex ||
-    prevItems.includes(StoreItem.allItems[leftIndex]
-    )) {
+  while ( prevItems.includes(StoreItem.allItems[leftIndex]) ) {
 
     leftIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   }
   prevItems.push(StoreItem.allItems[leftIndex])
 
-  while (
-    rightIndex === middleIndex ||
-    rightIndex === leftIndex ||
-    prevItems.includes(StoreItem.allItems[rightIndex]
-    )) {
+  while ( prevItems.includes(StoreItem.allItems[rightIndex]) ) {
 
     rightIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   }
   prevItems.push(StoreItem.allItems[rightIndex]);
 
-  while ( prevItems.includes(StoreItem.allItems[middleIndex])) {
+  while ( prevItems.includes(StoreItem.allItems[middleIndex]) ) {
     middleIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   }
   
@@ -137,9 +126,11 @@ function renderChartData() {
 
   let numberLabels = [];
   let itemLabels = [];
+  let displayedNumber = [];
   for (let chart of StoreItem.allItems) {
     numberLabels.push(chart.clicked);
     itemLabels.push(chart.name);
+    displayedNumber.push(chart.displayed)
   }  
   
   var myChart = new Chart(ctx, {
@@ -148,22 +139,100 @@ function renderChartData() {
       labels: itemLabels,
       datasets: [
         {
-          label: "MallonaBus",
+          label: "Clicked",
           data: numberLabels,
-          backgroundColor: ["yellow", "purple",
+          backgroundColor: [
             "rgba(255, 99, 132, 1)",
             "rgba(54, 162, 235, 1)",
             "rgba(255, 206, 86, 1)",
             "rgba(75, 192, 192, 1)",
             "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",],
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+          ],
           borderColor: [
             "rgba(255, 99, 132, 1)",
             "rgba(54, 162, 235, 1)",
             "rgba(255, 206, 86, 1)",
             "rgba(75, 192, 192, 1)",
             "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+          ],
+          borderWidth: 2,
+        },
+        {
+          label: "Displayed",
+          data: displayedNumber,
+          backgroundColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+          ],
+          borderColor: [
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
           ],
           borderWidth: 2,
         },
@@ -179,11 +248,43 @@ function renderChartData() {
   });
 }
 
+function renderViewButton() {
+  let buttonElem = document.createElement('button')
+  buttonElem.textContent = 'View Results'
+  buttonElem.id = 'view'
+  let buttonDivElem = document.getElementById('button')
+  buttonDivElem.appendChild(buttonElem)
+  buttonElem.addEventListener('click', viewResults)
+}
+
+function addToLocalStorage() {
+  const jsonAllItemsArray = JSON.stringify(StoreItem.allItems)
+  localStorage.setItem('items', jsonAllItemsArray)
+}
+
+function getFromLocalStorage() {
+  const jsonAllItemsArray = localStorage.getItem('items')
+  if (jsonAllItemsArray) {
+    const parsedAllItemsArray = JSON.parse(jsonAllItemsArray)
+
+    for ( let item of parsedAllItemsArray ) {
+      let currentName = item.name;
+
+      for ( let origItem of StoreItem.allItems ) {
+        let origName = origItem.name;
+
+        if (currentName === origName) {
+          origItem.clicked = item.clicked;
+          origItem.displayed = item.displayed;
+        }
+      }
+    }
+  }
+}
+
 // ______________________________________ event listener _____________________________________//
 
 itemsSectionElem.addEventListener('click', handleClick)
-buttonElem.addEventListener('click', viewResults)
-
 
 // ______________________________________ calls _____________________________________//
 new StoreItem('bag', './img/assets/bag.jpg')
@@ -207,3 +308,4 @@ new StoreItem("water can", "./img/assets/water-can.jpg");
 new StoreItem("wine glass", "./img/assets/wine-glass.jpg");
 
 randomizeItems();
+getFromLocalStorage();
