@@ -20,7 +20,7 @@ let leftItem = null;
 let middleItem = null;
 let rightItem = null;
 
-let flag = 25;
+let flag = 5;
 
 
 var ctx = document.getElementById("chart").getContext("2d");
@@ -63,6 +63,7 @@ function handleClick() {
       itemsSectionElem.removeEventListener('click', handleClick);
       renderResults();
       renderChartData();
+      addToLocalStorage();
     }
     
   }
@@ -179,6 +180,34 @@ function renderChartData() {
   });
 }
 
+function addToLocalStorage() {
+  const jsonAllItemsArray = JSON.stringify(StoreItem.allItems)
+  localStorage.setItem('items', jsonAllItemsArray)
+}
+
+function getFromLocalStorage() {
+  const jsonAllItemsArray = localStorage.getItem('items')
+  if (jsonAllItemsArray) {
+    const parsedAllItemsArray = JSON.parse(jsonAllItemsArray)
+    console.log(parsedAllItemsArray)
+
+    for (let item of parsedAllItemsArray) {
+      let currentName = item.name;
+
+      for ( let origItem of StoreItem.allItems) {
+        let origName = origItem.name;
+
+        if (currentName === origName) {
+          origItem.clicked = item.clicked;
+          origItem.displayed = item.displayed;
+          console.log('we updated some shit')
+        }
+      }
+
+    }
+  }
+}
+
 // ______________________________________ event listener _____________________________________//
 
 itemsSectionElem.addEventListener('click', handleClick)
@@ -207,3 +236,4 @@ new StoreItem("water can", "./img/assets/water-can.jpg");
 new StoreItem("wine glass", "./img/assets/wine-glass.jpg");
 
 randomizeItems();
+getFromLocalStorage();
