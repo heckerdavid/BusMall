@@ -58,9 +58,10 @@ function handleClick() {
     }
     if (!flag) {
       itemsSectionElem.removeEventListener('click', handleClick);
-      renderResults();
-      renderChartData();
+      // renderResults();
+      // renderChartData();
       addToLocalStorage();
+      renderViewButton();
     }
   }
   randomizeItems();
@@ -189,6 +190,15 @@ function renderChartData() {
   });
 }
 
+function renderViewButton() {
+  let buttonElem = document.createElement('button')
+  buttonElem.textContent = 'View Results'
+  buttonElem.id = 'view'
+  let buttonDivElem = document.getElementById('button')
+  buttonDivElem.appendChild(buttonElem)
+  buttonElem.addEventListener('click', viewResults)
+}
+
 function addToLocalStorage() {
   const jsonAllItemsArray = JSON.stringify(StoreItem.allItems)
   localStorage.setItem('items', jsonAllItemsArray)
@@ -217,7 +227,6 @@ function getFromLocalStorage() {
 // ______________________________________ event listener _____________________________________//
 
 itemsSectionElem.addEventListener('click', handleClick)
-buttonElem.addEventListener('click', viewResults)
 
 // ______________________________________ calls _____________________________________//
 new StoreItem('bag', './img/assets/bag.jpg')
