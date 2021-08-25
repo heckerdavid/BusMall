@@ -11,11 +11,10 @@ body section {
 div {
   margin: 20px;
   padding: 10px;
-  border: solid black;
 }
 img {
   height: 300px;
-  border: solid black;
+  border-radius: 10px 100px;
 }
 
 section:nth-child(2) {
