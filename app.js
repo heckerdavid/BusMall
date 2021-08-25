@@ -14,6 +14,7 @@ const rightImgElem = document.getElementById('right_item_img');
 const leftTextElem = document.getElementById('left_item_p');
 const middleTextElem = document.getElementById('middle_item_p');
 const rightTextElem = document.getElementById('right_item_p');
+const buttonElem = document.getElementById('view')
 
 let leftItem = null;
 let middleItem = null;
@@ -22,6 +23,7 @@ let rightItem = null;
 let flag = 25;
 
 
+var ctx = document.getElementById("chart").getContext("2d");
 
 // ______________________________ constructor funcs _________________________________//
 
@@ -34,7 +36,6 @@ function StoreItem(name, img) {
   
   // INIT
   StoreItem.allItems.push(this)
-  console.log(this)
 }
 
 // ______________________________  prototype  _________________________________//
@@ -49,7 +50,6 @@ StoreItem.prototype.renderSingleItem = function(name, img) {
 // ______________________________ functions _________________________________//
 
 function handleClick() {
-  console.log(event.target)
   if (event.target === leftImgElem || event.target === rightImgElem || event.target === middleImgElem) {
     flag--;
     if (event.target === leftImgElem) {
@@ -62,11 +62,17 @@ function handleClick() {
     if (!flag) {
       itemsSectionElem.removeEventListener('click', handleClick);
       renderResults();
+      renderChartData();
     }
-
+    
   }
-
+  
   randomizeItems();
+}
+
+function viewResults() {
+  renderResults();
+  renderChartData();
 }
 
 function displayThreeItems(item1, item2, item3) {
@@ -76,26 +82,45 @@ function displayThreeItems(item1, item2, item3) {
 }
 
 function randomizeItems() {
+  let prevItems = [leftItem, middleItem, rightItem]
   let leftIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   let middleIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   let rightIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   
-  while ( leftIndex === middleIndex ||  leftIndex === rightIndex) {
-     leftIndex = Math.floor(Math.random() * StoreItem.allItems.length);
+  while ( 
+    leftIndex === middleIndex ||
+    leftIndex === rightIndex ||
+    prevItems.includes(StoreItem.allItems[leftIndex]
+    )) {
+
+    leftIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   }
-  while (rightIndex === middleIndex || rightIndex ===  leftIndex) {
+  prevItems.push(StoreItem.allItems[leftIndex])
+
+  while (
+    rightIndex === middleIndex ||
+    rightIndex === leftIndex ||
+    prevItems.includes(StoreItem.allItems[rightIndex]
+    )) {
+
     rightIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   }
+  prevItems.push(StoreItem.allItems[rightIndex]);
+
+  while ( prevItems.includes(StoreItem.allItems[middleIndex])) {
+    middleIndex = Math.floor(Math.random() * StoreItem.allItems.length);
+  }
+  
+
   leftItem = StoreItem.allItems[leftIndex];
   middleItem = StoreItem.allItems[middleIndex];
   rightItem = StoreItem.allItems[rightIndex];
   displayThreeItems(leftItem, middleItem, rightItem);
-  console.log("Index numbers are : ", leftIndex, middleIndex, rightIndex);
 }
 
 function renderResults() {
-  let ulElem = document.getElementById('click_tracker')
-  ulElem.innerHTML = ''
+  let ulElem = document.getElementById('click_tracker');
+  ulElem.innerHTML = '';
   for (let item of StoreItem.allItems) {
     const liElem = document.createElement('li')
     liElem.textContent = `${item.name}: ${item.clicked} click(s). ${(item.clicked/item.displayed) * 100}% clicked when displayed.`
@@ -103,9 +128,62 @@ function renderResults() {
   }
 }
 
+function renderChartData() {
+  // let chartDivElem = document.getElementById('canvas');
+  // chartDivElem.innerHTML = '';
+  // let canvasElem = document.createElement('canvas')
+  // canvasElem.id = 'chart';
+  // chartDivElem.appendChild(canvasElem);
+
+  let numberLabels = [];
+  let itemLabels = [];
+  for (let chart of StoreItem.allItems) {
+    numberLabels.push(chart.clicked);
+    itemLabels.push(chart.name);
+  }  
+  
+  var myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: itemLabels,
+      datasets: [
+        {
+          label: "MallonaBus",
+          data: numberLabels,
+          backgroundColor: ["yellow", "purple",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+          borderWidth: 2,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+}
+
 // ______________________________________ event listener _____________________________________//
 
 itemsSectionElem.addEventListener('click', handleClick)
+buttonElem.addEventListener('click', viewResults)
+
 
 // ______________________________________ calls _____________________________________//
 new StoreItem('bag', './img/assets/bag.jpg')
