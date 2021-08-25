@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 // ____________________________ to do _________________________________//
 
 
@@ -14,14 +12,13 @@ const rightImgElem = document.getElementById('right_item_img');
 const leftTextElem = document.getElementById('left_item_p');
 const middleTextElem = document.getElementById('middle_item_p');
 const rightTextElem = document.getElementById('right_item_p');
-const buttonElem = document.getElementById('view')
+const buttonElem = document.getElementById('view');
 
 let leftItem = null;
 let middleItem = null;
 let rightItem = null;
 
 let flag = 5;
-
 
 var ctx = document.getElementById("chart").getContext("2d");
 
@@ -65,9 +62,7 @@ function handleClick() {
       renderChartData();
       addToLocalStorage();
     }
-    
   }
-  
   randomizeItems();
 }
 
@@ -88,27 +83,19 @@ function randomizeItems() {
   let middleIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   let rightIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   
-  while ( 
-    leftIndex === middleIndex ||
-    leftIndex === rightIndex ||
-    prevItems.includes(StoreItem.allItems[leftIndex]
-    )) {
+  while ( prevItems.includes(StoreItem.allItems[leftIndex]) ) {
 
     leftIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   }
   prevItems.push(StoreItem.allItems[leftIndex])
 
-  while (
-    rightIndex === middleIndex ||
-    rightIndex === leftIndex ||
-    prevItems.includes(StoreItem.allItems[rightIndex]
-    )) {
+  while ( prevItems.includes(StoreItem.allItems[rightIndex]) ) {
 
     rightIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   }
   prevItems.push(StoreItem.allItems[rightIndex]);
 
-  while ( prevItems.includes(StoreItem.allItems[middleIndex])) {
+  while ( prevItems.includes(StoreItem.allItems[middleIndex]) ) {
     middleIndex = Math.floor(Math.random() * StoreItem.allItems.length);
   }
   
@@ -189,21 +176,18 @@ function getFromLocalStorage() {
   const jsonAllItemsArray = localStorage.getItem('items')
   if (jsonAllItemsArray) {
     const parsedAllItemsArray = JSON.parse(jsonAllItemsArray)
-    console.log(parsedAllItemsArray)
 
-    for (let item of parsedAllItemsArray) {
+    for ( let item of parsedAllItemsArray ) {
       let currentName = item.name;
 
-      for ( let origItem of StoreItem.allItems) {
+      for ( let origItem of StoreItem.allItems ) {
         let origName = origItem.name;
 
         if (currentName === origName) {
           origItem.clicked = item.clicked;
           origItem.displayed = item.displayed;
-          console.log('we updated some shit')
         }
       }
-
     }
   }
 }
@@ -212,7 +196,6 @@ function getFromLocalStorage() {
 
 itemsSectionElem.addEventListener('click', handleClick)
 buttonElem.addEventListener('click', viewResults)
-
 
 // ______________________________________ calls _____________________________________//
 new StoreItem('bag', './img/assets/bag.jpg')
