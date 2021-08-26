@@ -1,36 +1,64 @@
 body {
   width: 900px;
-  background-color: rgba(146, 142, 142, 0.849);
+  background-color: rgb(107, 107, 107);
 }
 
 body section {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   margin: 10px;
+  margin-left: 150px;
 }
+
+#all_items { 
+  display: flex;
+}
+
+#all_items div {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+}
+
+
 div {
-  margin: 20px;
-  padding: 10px;
+  margin: 25px;
+  padding: 25px;
+  width: 400px;
 }
+
+#button {
+  height: 100px;
+}
+
 img {
-  height: 300px;
+  height: 200px;
   border-radius: 10px 100px;
 }
 
-section:nth-child(2) {
-  border-radius: 300px;
-  color: rgb(75, 29, 105);
+img:hover {
+  border-radius: 100px 100px;
+  border: 5px solid hsla(293, 97%, 30%, 0.719);
+}
+
+#list {
+  color: rgb(60, 18, 88);
   display: flex;
   justify-content: space-around;
   padding: 20px;
   width: 50rem;
+  border-radius: 10px 100px;
+  border:1px solid rgb(60, 18, 88);
+  background-color: rgba(146, 142, 142, 0.849);
 }
 
 
 li {
+  background-color: rgba(146, 142, 142, 0.849);
   margin: 20px;
   padding: 5px;
-  border: 1px solid rgb(75, 29, 105);
+  /* border: 1px solid rgb(75, 29, 105); */
   border-radius: 40px;
   font-size: large;
   margin-left: 50px;
@@ -40,10 +68,34 @@ li {
 button { 
   background-color: hsla(293, 97%, 30%, 0.719);
   border-style: none;
-  height: 40px;
-  width: 150px;
+  height: 60px;
+  width: 250px;
   padding: 10px;
   margin: 30px;
   font-size: 16px;
   font-family: 'Courier New', Courier, monospace;
+  color: darkorange;
+}
+
+button:hover { 
+  background-color: darkorange;
+  color: hsla(293, 97%, 30%, 0.719);
+  font-weight: bolder;
+  transition-duration: 600ms;
+}
+
+#canvas {
+  width: 900px;
+  margin-left: 150px;
+}
+
+#canvas:hover {
+  background-color: rgba(0, 0, 0, 0.541);
+  transition-duration: 300ms;
+}
+
+p {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  font-size: large;
 }

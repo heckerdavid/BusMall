@@ -185,7 +185,7 @@ function renderChartData() {
             "rgba(75, 192, 192, 1)",
             "rgba(153, 102, 255, 1)",
           ],
-          borderWidth: 2,
+          borderWidth: 3,
         },
         {
           label: "Displayed",
@@ -234,7 +234,7 @@ function renderChartData() {
             "rgba(255, 206, 86, 1)",
             "rgba(75, 192, 192, 1)",
           ],
-          borderWidth: 2,
+          borderWidth: 3,
         },
       ],
     },
