@@ -63,8 +63,8 @@ function handleClick() {
       addToLocalStorage();
       renderViewButton();
     }
+    randomizeItems();
   }
-  randomizeItems();
 }
 
 function viewResults() {

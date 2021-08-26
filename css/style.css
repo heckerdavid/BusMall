@@ -35,10 +35,12 @@ div {
 img {
   height: 200px;
   border-radius: 10px 100px;
+  margin: 5px;
 }
 
 img:hover {
   border-radius: 100px 100px;
+  margin: 0px;
   border: 5px solid hsla(293, 97%, 30%, 0.719);
 }
 
