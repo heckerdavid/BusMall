@@ -11,6 +11,21 @@ body section {
   margin-left: 150px;
 }
 
+h1 {
+  background-color: hsla(293, 97%, 30%, 0.719);
+  color: darkorange;
+  border-radius: 10px 100px;
+  width: 50%;
+  height: 30px;
+  font-family: serif;
+  font-size: larger;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  padding: 20px;
+}
+
 #all_items { 
   display: flex;
 }
@@ -36,12 +51,14 @@ img {
   height: 200px;
   border-radius: 10px 100px;
   margin: 5px;
+  transition-duration: 100ms;
 }
 
 img:hover {
   border-radius: 100px 100px;
   margin: 0px;
   border: 5px solid hsla(293, 97%, 30%, 0.719);
+  transition-duration: 100ms;
 }
 
 #list {
@@ -70,6 +87,7 @@ li {
 button { 
   background-color: hsla(293, 97%, 30%, 0.719);
   border-style: none;
+  border-radius: 10px 100px;
   height: 60px;
   width: 250px;
   padding: 10px;
@@ -77,9 +95,11 @@ button {
   font-size: 16px;
   font-family: 'Courier New', Courier, monospace;
   color: darkorange;
+  transition-duration: 600ms;
 }
 
 button:hover { 
+  border-radius: 100px 100px;
   background-color: darkorange;
   color: hsla(293, 97%, 30%, 0.719);
   font-weight: bolder;
@@ -89,11 +109,13 @@ button:hover {
 #canvas {
   width: 900px;
   margin-left: 150px;
+  transition-duration: 600ms;
 }
 
 #canvas:hover {
   background-color: rgba(0, 0, 0, 0.541);
   transition-duration: 300ms;
+  transition-duration: 600ms;
 }
 
 p {
