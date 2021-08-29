@@ -32,7 +32,7 @@ function StoreItem(name, img) {
   this.clicked = 0;
   
   // INIT
-  StoreItem.allItems.push(this)
+  StoreItem.allItems.push(this);
 }
 
 // ______________________________  prototype  _________________________________//
@@ -58,8 +58,6 @@ function handleClick() {
     }
     if (!flag) {
       itemsSectionElem.removeEventListener('click', handleClick);
-      // renderResults();
-      // renderChartData();
       addToLocalStorage();
       renderViewButton();
     }
@@ -67,17 +65,20 @@ function handleClick() {
   }
 }
 
+// render and display chart data
 function viewResults() {
   renderResults();
   renderChartData();
 }
 
+// render three items to the page
 function displayThreeItems(item1, item2, item3) {
   item1.renderSingleItem(leftTextElem, leftImgElem)
   item2.renderSingleItem(middleTextElem, middleImgElem)
   item3.renderSingleItem(rightTextElem, rightImgElem)
 }
 
+// select three new random items, insure they are separate from previously displayed
 function randomizeItems() {
   let prevItems = [leftItem, middleItem, rightItem]
   let leftIndex = Math.floor(Math.random() * StoreItem.allItems.length);
@@ -107,6 +108,7 @@ function randomizeItems() {
   displayThreeItems(leftItem, middleItem, rightItem);
 }
 
+// render text data from user inputs
 function renderResults() {
   let ulElem = document.getElementById('click_tracker');
   ulElem.innerHTML = '';
@@ -117,13 +119,8 @@ function renderResults() {
   }
 }
 
+// render chart data from user inputs
 function renderChartData() {
-  // let chartDivElem = document.getElementById('canvas');
-  // chartDivElem.innerHTML = '';
-  // let canvasElem = document.createElement('canvas')
-  // canvasElem.id = 'chart';
-  // chartDivElem.appendChild(canvasElem);
-
   let numberLabels = [];
   let itemLabels = [];
   let displayedNumber = [];
@@ -248,6 +245,7 @@ function renderChartData() {
   });
 }
 
+// display view results button when user is out of clicks (flag = 0)
 function renderViewButton() {
   let buttonElem = document.createElement('button')
   buttonElem.textContent = 'View Results'
@@ -257,11 +255,13 @@ function renderViewButton() {
   buttonElem.addEventListener('click', viewResults)
 }
 
+// add items to local storage
 function addToLocalStorage() {
   const jsonAllItemsArray = JSON.stringify(StoreItem.allItems)
   localStorage.setItem('items', jsonAllItemsArray)
 }
 
+// get items (if appl.) from local storage
 function getFromLocalStorage() {
   const jsonAllItemsArray = localStorage.getItem('items')
   if (jsonAllItemsArray) {
